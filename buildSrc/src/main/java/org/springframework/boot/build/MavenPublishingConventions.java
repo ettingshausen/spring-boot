@@ -65,6 +65,9 @@ class MavenPublishingConventions {
 				publishing.getRepositories().maven((mavenRepository) -> {
 					mavenRepository.setUrl(project.property("deploymentRepository"));
 					mavenRepository.setName("deployment");
+					mavenRepository.setAllowInsecureProtocol(true);
+					mavenRepository.getCredentials().setUsername((String) project.property("nexusUsername"));
+					mavenRepository.getCredentials().setPassword((String) project.property("nexusPassword"));
 				});
 			}
 			publishing.getPublications()
